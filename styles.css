@@ -1,0 +1,54 @@
+:root {
+  --bg: #07111f;
+  --panel: rgba(12, 24, 43, 0.92);
+  --panel-2: #10233d;
+  --text: #edf6ff;
+  --muted: #9fb5ce;
+  --accent: #55d6be;
+  --accent-2: #9ec5ff;
+  --danger: #ff6b6b;
+  --border: rgba(158, 197, 255, 0.18);
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; height: 100%; overflow: hidden; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
+
+body { display: grid; grid-template-columns: minmax(250px, 320px) 1fr; }
+
+.sidebar { z-index: 2; min-height: 100vh; padding: 1.25rem; background: linear-gradient(180deg, rgba(8, 18, 34, 0.98), rgba(8, 18, 34, 0.84)); border-right: 1px solid var(--border); box-shadow: 18px 0 50px rgba(0, 0, 0, 0.25); overflow-y: auto; }
+
+.brand { display: flex; gap: 0.9rem; align-items: center; margin-bottom: 1.5rem; }
+.logo { display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 1rem; color: #06111f; font-weight: 900; letter-spacing: -0.08em; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 0 28px rgba(85, 214, 190, 0.35); }
+h1 { margin: 0; font-size: clamp(1.7rem, 4vw, 2.35rem); letter-spacing: -0.05em; }
+.brand p, .panel p, .disclaimer { color: var(--muted); margin: 0.2rem 0 0; line-height: 1.45; }
+
+.mode-tabs { display: grid; gap: 0.65rem; margin-bottom: 1rem; }
+button { width: 100%; border: 1px solid var(--border); border-radius: 0.9rem; padding: 0.85rem 1rem; color: var(--text); background: var(--panel-2); font-weight: 750; cursor: pointer; transition: transform 160ms ease, border-color 160ms ease, background 160ms ease; }
+button:hover { transform: translateY(-1px); border-color: rgba(85, 214, 190, 0.55); }
+button.active { color: #04131e; background: linear-gradient(135deg, var(--accent), #8fe5d5); }
+button.secondary { margin-top: 1rem; background: rgba(158, 197, 255, 0.12); }
+
+.panel { padding: 1rem; margin: 1rem 0; border: 1px solid var(--border); border-radius: 1.1rem; background: var(--panel); backdrop-filter: blur(12px); }
+h2 { margin: 0 0 0.75rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; color: #cfe3f8; }
+.score-row, .toggle-row, .range-row { display: flex; justify-content: space-between; align-items: center; gap: 0.7rem; color: var(--muted); }
+.score-row strong { color: var(--accent); font-size: 1.8rem; }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+input[type="checkbox"] { width: 1.15rem; height: 1.15rem; accent-color: var(--accent); }
+kbd { display: inline-block; margin: 0.1rem; padding: 0.1rem 0.35rem; border: 1px solid var(--border); border-radius: 0.35rem; background: rgba(255, 255, 255, 0.07); color: var(--text); }
+.disclaimer { font-size: 0.78rem; }
+
+.viewport { position: relative; min-width: 0; min-height: 100vh; background: radial-gradient(circle at 60% 35%, rgba(37, 73, 117, 0.28), transparent 42%), #07111f; }
+canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.crosshair { position: absolute; inset: 50% auto auto 50%; width: 20px; height: 20px; transform: translate(-50%, -50%); pointer-events: none; }
+.crosshair::before, .crosshair::after { content: ""; position: absolute; background: rgba(237, 246, 255, 0.74); box-shadow: 0 0 8px rgba(85, 214, 190, 0.9); }
+.crosshair::before { left: 9px; top: 0; width: 2px; height: 20px; }
+.crosshair::after { left: 0; top: 9px; width: 20px; height: 2px; }
+.status { position: absolute; left: 1.1rem; bottom: 1.1rem; max-width: min(38rem, calc(100% - 2.2rem)); padding: 0.75rem 0.95rem; border: 1px solid var(--border); border-radius: 0.9rem; background: rgba(5, 14, 27, 0.78); color: #d7e9fb; backdrop-filter: blur(10px); }
+.label { position: absolute; left: 0; top: 0; color: #f8fbff; font-weight: 800; font-size: 13px; padding: 0.25rem 0.45rem; border-radius: 999px; background: rgba(7, 17, 31, 0.7); border: 1px solid rgba(255, 255, 255, 0.24); text-shadow: 0 1px 2px #000; pointer-events: none; white-space: nowrap; }
+
+@media (max-width: 800px) {
+  body { grid-template-columns: 1fr; grid-template-rows: auto 1fr; overflow: hidden; }
+  .sidebar { min-height: auto; max-height: 42vh; border-right: 0; border-bottom: 1px solid var(--border); }
+  .viewport { min-height: 58vh; }
+}
