@@ -44,9 +44,13 @@ function resize() {
 }
 
 function selectFromEvent(event) {
-  const rect = canvas.getBoundingClientRect();
-  pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-  pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+  if (document.pointerLockElement === canvas) {
+    pointer.set(0, 0);
+  } else {
+    const rect = canvas.getBoundingClientRect();
+    pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+  }
   raycaster.setFromCamera(pointer, endoscope.camera);
   const hit = raycaster.intersectObjects(interactive, false)[0];
   if (hit) quiz.handleSelection(hit.object);

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
 const DEFAULT_POSITION = new THREE.Vector3(0, 0, 4.2);
-const DEFAULT_ROTATION = { yaw: Math.PI, pitch: 0 };
+const DEFAULT_ROTATION = { yaw: 0, pitch: 0 };
 
 export function createEndoscopeCamera(canvas, onStatus) {
   const camera = new THREE.PerspectiveCamera(70, 1, 0.05, 100);
@@ -68,7 +68,7 @@ export function createEndoscopeCamera(canvas, onStatus) {
     camera.getWorldDirection(forward);
     forward.y = 0;
     forward.normalize();
-    const right = new THREE.Vector3().crossVectors(forward, camera.up).normalize().multiplyScalar(-1);
+    const right = new THREE.Vector3().crossVectors(forward, camera.up).normalize();
 
     if (keys.has('w')) camera.position.addScaledVector(forward, distance);
     if (keys.has('s')) camera.position.addScaledVector(forward, -distance);
