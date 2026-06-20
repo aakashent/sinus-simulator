@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SinusSim | Anatomy Explorer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar" aria-label="SinusSim controls">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">SS</div>
+        <div>
+          <h1>SinusSim</h1>
+          <p>Sinonasal 3D Anatomy</p>
+        </div>
+      </div>
+
+      <nav class="mode-tabs" aria-label="Application modes">
+        <button id="explorerMode" class="active" type="button">Anatomy Explorer</button>
+        <button id="quizMode" type="button">Landmark Quiz</button>
+      </nav>
+
+      <section class="panel">
+        <h2>Quiz</h2>
+        <p id="quizPrompt">Switch to Landmark Quiz to begin.</p>
+        <div class="score-row">
+          <span>Score</span>
+          <strong id="scoreDisplay">0</strong>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>View Controls</h2>
+        <label class="toggle-row">
+          <input id="labelsToggle" type="checkbox" checked />
+          <span>Toggle labels</span>
+        </label>
+        <label class="range-row" for="fovSlider">
+          <span>FOV</span>
+          <output id="fovOutput">70°</output>
+        </label>
+        <input id="fovSlider" type="range" min="45" max="95" value="70" />
+        <button id="resetView" class="secondary" type="button">Reset view</button>
+      </section>
+
+      <section class="help panel">
+        <h2>Navigation</h2>
+        <p><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move · <kbd>Q</kbd>/<kbd>E</kbd> vertical · drag or click canvas for mouse look.</p>
+      </section>
+
+      <p class="disclaimer">Educational orientation model only. Not surgical guidance.</p>
+    </aside>
+
+    <main class="viewport">
+      <canvas id="sceneCanvas" aria-label="3D sinonasal anatomy scene"></canvas>
+      <div class="crosshair" aria-hidden="true"></div>
+      <div id="statusOverlay" class="status">Explorer mode: inspect labelled anatomy.</div>
+    </main>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.165.0/build/three.module.js"
+        }
+      }
+    </script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
